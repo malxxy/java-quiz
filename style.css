@@ -1,0 +1,41 @@
+/* Root variables */
+:root {
+    --light: #C5CDE0;
+    --lBlue: #A1AECB;
+    --mBlue: #7C8DB3;
+    --dBlue: #42588B;
+    --lTeal: #93C0C0;
+    --mTeal: #4D8E8E;
+    --dTeal: #347C7C;
+    --lGreen: #8AD18A;
+    --mGreen: #8AD18A;
+    --dGreen: #45A545;
+    --textColor: #0A152E;
+    --headerFont: "Georgia","Times New Roman",serif;
+
+}
+
+/* Universal selctors */
+* {
+    margin: 2px;
+    padding: 3px;
+}
+
+/* Element selectors */
+body {
+    font-family: "Arial","Calibri",sans-serif;
+    font-size: 20px;
+    background-color: var(--light);
+    color: var(--textColor);
+    /* Add animations to body background? Would be cool to have sparkles pop up randonly across the screen */
+}
+
+section {
+    border: 5px var(--textColor) dashed;
+    background-color: var(--mBlue);
+    border-radius:5%;
+}
+
+p {
+    font-size: 20px;
+}
