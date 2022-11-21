@@ -97,14 +97,11 @@ function displayQuestion() {
     } else {
       let userIncorrect = document.createElement('p')
       userIncorrect.setAttribute("style","text:red; background-color: --mTeal;")
-      userIncorrect.textContent = "Incorrect";
+      userIncorrect.textContent = "Incorrect - You lost 3 seconds!";
       correctDiv.append(userIncorrect);
+      count = count -3
     }
   })
-
-  // Check answer 
-    // if correct add to score 
-    // If wrong subtract time
 
     // show next question
       // have to clear the previous questions 
@@ -112,49 +109,8 @@ function displayQuestion() {
 };
 nextBtn.addEventListener("click",displayQuestion); // when user clicks on start btn, hide card and go to next section
 
-// select answer 
-function userAnswer() {
-  // if (userInput != correctAns)
-  count = count -3
-  // print
-  console.log("Incorrect answer time loss", incorrect + "You lost 3 seconds!");
-};
-
 // Then, you can use a for loop to keep track of your "question index" or what question your on.
 // With that, you can use the createElement operator to create an HTML element for the question title, and then buttons for each of the answers
 
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
-
-
-
-
-
-// Function to change correct answer to green, display "correct!" message and display next button
-function correct(event) {
-    event.stopPropagation();
-    event.currentTarget.setAttribute(
-      "style",
-      "background-color: --dGreen;"
-    );
-     // Create element for correct message
-     var youRight = document.createElement("Correct!");
-     document.section.appendChild(youRight);
-  };
-// When correct answer is clicked on, launch function "correct"
-correctAns.addEventListener("click",correct);
-
-// When user selects incorrect answer
-  function incorrect(event) {
-    // event.stopPropagation();
-    event.currentTarget.setAttribute(
-      "style",
-      "background-color: --mteal;"
-    );
-    // Create elelemnt for incorrect message
-    var youWrong = document.createElement("p");
-    document.section.appendChild(youWrong);
-    // FUNCTION TO SUBTRACT TIME
-  };
-
-incorrectAns.addEventListener("click",incorrect);
