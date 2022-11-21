@@ -45,3 +45,10 @@ h2 {
     padding: 10px; 
     font-size: 36px;
 }
+
+btn {
+    padding: 10px;
+    box-shadow: 3px 3px var(--textColor);
+    border: 2px solid var(--textColor);
+    border-radius: 5%;
+}

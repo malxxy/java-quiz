@@ -10,9 +10,9 @@ var GameOver = document.getElementById("game-over")
 var sectionAns = document.getElementById("section-ans");
 var correctAns = document.getElementsByClassName(".correct");
 var incorrectAns = document.getElementsByClassName(".incorrect");
-var btn1 = document.querySelector("#first-btn");
-var btn2 = document.querySelector("#second-btn");
-var btn3 = document.querySelector("#finish-btn");
+var btn1 = document.getElementById("first-btn");
+var btn2 = document.getElementById("second-btn");
+var btn3 = document.getElementById("finish-btn");
 var allSections = [sectionOne,sectionTwo,sectionThree];
 
 // PROMPT FOR LIGHT MODE OR DARK MODE????
