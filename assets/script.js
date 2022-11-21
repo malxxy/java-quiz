@@ -1,15 +1,13 @@
-// Variables 
-// Dark or light mode
-var mode = document.querySelector("#mode");
+// Variables
 var container = document.querySelector(".container");
-var h2El = document.querySelectorAll("h2");
+var h1El = document.getElementById("h1-title");
 var startCard = document.querySelector(".opener");
-var start = document.querySelector("#start-btn");
-var sectionOne = document.querySelector("#section-one");
-var sectionTwo = document.querySelector("#section-two");
-var sectionThree = document.querySelector("#section-three")
-var GameOver = document.querySelector("#")
-var sectionAns = document.querySelector("section");
+var start = document.getElementById("start-btn");
+var sectionOne = document.getElementById("section-one");
+var sectionTwo = document.getElementById("section-two");
+var sectionThree = document.getElementById("section-three")
+var GameOver = document.getElementById("game-over")
+var sectionAns = document.getElementById("section-ans");
 var correctAns = document.getElementsByClassName(".correct");
 var incorrectAns = document.getElementsByClassName(".incorrect");
 var btn1 = document.querySelector("#first-btn");
@@ -19,20 +17,20 @@ var allSections = [sectionOne,sectionTwo,sectionThree];
 
 // PROMPT FOR LIGHT MODE OR DARK MODE????
  // Set default mode to dark
-var setMode = "light";
-// Listen for a click event on toggle switch
-mode.addEventListener("click", function() {
-// If mode is light switch to dark mode
-   if (mode === "light") {
-     mode = "dark";
-     container.setAttribute("class", "dark");
-   } 
-   // If mode is dark switch to light
-  else {
-    mode = "light";
-     container.setAttribute("class", "light");
-  }
- });
+// var setMode = "light";
+// // Listen for a click event on toggle switch
+// mode.addEventListener("click", function() {
+// // If mode is light switch to dark mode
+//    if (mode === "light") {
+//      mode = "dark";
+//      container.setAttribute("class", "dark");
+//    } 
+//    // If mode is dark switch to light
+//   else {
+//     mode = "light";
+//      container.setAttribute("class", "light");
+//   }
+//  });
 
  // Set default mode for sections as HIDDEN
 //  btn.addEventListener()
@@ -45,15 +43,7 @@ mode.addEventListener("click", function() {
 //  };
 
 // Style header h1
-h1.setAttribute(
-    "style",
-    "background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px;");
-
-// Style h2 headers throughout quiz
-h2El.setAttribute(
-    "style",
-    "font-family: --headerFont; padding: 10px; font-size: 36px;");
-    // ADD ANIMATION TO FONT?
+h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px;");
 
 // Style start card
 startCard.setAttribute("style",
