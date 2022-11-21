@@ -1,38 +1,9 @@
 // Variables
-var container = document.getElementById("container");
-var btn = document.querySelectorAll("btn");
 var h1El = document.getElementById("h1-title");
 var startCard = document.querySelector(".opener");
 var start = document.getElementById("start-btn");
-var sectionOne = document.getElementById("section-one");
-var sectionTwo = document.getElementById("section-two");
-var sectionThree = document.getElementById("section-three")
-var GameOver = document.getElementById("game-over")
-var correctAns = document.querySelectorAll(".correct");
-var incorrectAns = document.querySelectorAll(".incorrect");
-var btn1 = document.getElementById("first-btn");
-var btn2 = document.getElementById("second-btn");
-var btn3 = document.getElementById("finish-btn");
-var allSections = [sectionOne,sectionTwo,sectionThree];
-
-console.log(correctAns);
-
-// PROMPT FOR LIGHT MODE OR DARK MODE????
- // Set default mode to dark
-// var setMode = "light";
-// // Listen for a click event on toggle switch
-// mode.addEventListener("click", function() {
-// // If mode is light switch to dark mode
-//    if (mode === "light") {
-//      mode = "dark";
-//      container.setAttribute("class", "dark");
-//    } 
-//    // If mode is dark switch to light
-//   else {
-//     mode = "light";
-//      container.setAttribute("class", "light");
-//   }
-//  });
+var questionSection = document.getElementById("questions");
+var GameOver = document.getElementById("game-over");
 
 // Style header h1
 h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px; text-align: center;");
@@ -41,13 +12,54 @@ h1El.setAttribute("style","background-color: --light; font-family: --headerFont;
 startCard.setAttribute("style",
     "width: 400px; height: 300px; border: --dBlue; background-color: --lBlue;");
 
-// Hide start card upon clicking start button and reveal next card
-function hideCard() {
-  startCard.setAttribute("style","display: none;");
-  sectionOne.setAttribute("style","display:block;")
-  // START TIMER COUNTDOWN;
+// Define variable for amount of time user has to finish quiz
+var seconds = 20
+
+// Timer function
+function beginTimer() {
+  seconds = seconds-1;
+  if (seconds > 0) {
+    document.getElementById.innerHTMl = seconds;
+  }
+  // code to print time document.getElementById("timer").innerHTML = seconds.toLocaleTimeString();
+  else if (seconds === 0) {
+    document.getElementById("timer").innerHTMl = "You're out of time!"
+  };
+};
+
+// Start game function
+function hideStartCard() {
+  startCard.setAttribute("style","display: none;"); // Hide start card
+  setInterval(beginTimer,1000); // start countdown timer
+  nextQuestion();
 }
-start.addEventListener("click",hideCard); // when user clicks on start btn, hide card and go to next section
+start.addEventListener("click",hideStartCard); // when user clicks on start btn, hide card and go to next section & start timer
+
+var questions = [
+  {
+    title: "Here is Question one",
+    choices: ["answer1", "answer2", "answer3", "answer4"],
+    answer: "answer1"
+  },
+  {
+    title: "Here is Question two",
+    choices: ["answer1", "answer2", "answer3", "answer4"],
+    answer: "answer3"
+  }
+];
+
+// go to next question
+function nextQuestion() {
+};
+btn.addEventListener("click",nextQuestion); // when user clicks on start btn, hide card and go to next section
+
+// select answer 
+function userAnswer() {
+
+};
+// Then, you can use a for loop to keep track of your "question index" or what question your on.
+// With that, you can use the createElement operator to create an HTML element for the question title, and then buttons for each of the answers
+
 
 // Hide question sections when webpage is opened
 sectionOne.setAttribute("style","display:none;");
@@ -58,6 +70,8 @@ GameOver.setAttribute("style","display:none;");
 // Style paragraph answer backgrounds
 container.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
 
+
+// THESE MIGHT BE REDUCED 
 function hideCard1() {
   sectionOne.setAttribute("style","display: none;");
   sectionTwo.setAttribute("style","display:block;")
@@ -98,7 +112,7 @@ correctAns.addEventListener("click",correct);
       "background-color: --mteal;"
     );
     // Create elelemnt for incorrect message
-    var youWrong = document.createElement("Incorrect!");
+    var youWrong = document.createElement("p");
     document.section.appendChild(youWrong);
     // FUNCTION TO SUBTRACT TIME
   };
