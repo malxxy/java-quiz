@@ -91,12 +91,12 @@ function displayQuestion() {
     if (userAnswer === questionObject[0].answer) {
       score++
       let userCorrect = document.createElement('p')
-      userCorrect.setAttribute("style","text:green; background-color: --mTeal;")
+      userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
       userCorrect.textContent = "Correct";
       correctDiv.append(userCorrect);
     } else {
       let userIncorrect = document.createElement('p')
-      userIncorrect.setAttribute("style","text:red; background-color: --mTeal;")
+      userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
       userIncorrect.textContent = "Incorrect - You lost 3 seconds!";
       correctDiv.append(userIncorrect);
       count = count -3

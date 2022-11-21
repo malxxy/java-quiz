@@ -71,13 +71,13 @@ btn:hover {
     align-items: center;
     justify-content: center;
     background-color: #42588B;
-    text:white;
+    color:white;
 }
 
 #next-btn {
     padding:10px;
     background: #347C7C;
-    text:white;
+    color:white;
     display: flex;
     align-items: center;
     justify-content: center;
