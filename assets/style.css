@@ -46,14 +46,44 @@ h2 {
     font-size: 36px;
 }
 
-btn {
+btn:hover {
+    opacity: 50%;
+}
+
+/* Class elements */
+.answer-btn {
     padding: 10px;
     box-shadow: 3px 3px var(--textColor);
     border: 2px solid var(--textColor);
     border-radius: 5%;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-btn:hover {
-    opacity: 50%;
+/* ID elements */
+#start-btn {
+    padding: 10px;
+    box-shadow: 3px 3px var(--textColor);
+    border: 2px solid var(--textColor);
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #42588B;
+    text:white;
+}
+
+#next-btn {
+    padding:10px;
+    background: #347C7C;
+    text:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 3px;
+}
+
+#questions {
+    display: none;
 }
