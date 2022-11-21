@@ -7,6 +7,8 @@ var questionTitle = document.getElementById("question-title");
 var gameOver = document.getElementById("game-over");
 var nextBtn = document.getElementById("next-btn");
 var answers = document.getElementById("answers");
+var answerChoices = document.getElementById("answer-btn");
+var answerOptions = document.querySelectorAll('.answer-btn');
 
 // Style header h1
 h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px; text-align: center;");
@@ -20,6 +22,9 @@ gameOver.setAttribute("style","display: none;"); // Hide game over card
 
 // Define variable for amount of time user has to finish quiz
 var seconds = 20
+var questionIndex;
+var userAnswer;
+var score = 0;
 
 // Timer function
 function beginTimer() {
@@ -38,11 +43,13 @@ function beginTimer() {
 function hideStartCard() {
   startCard.setAttribute("style","display: none;"); // Hide start card
   setInterval(beginTimer,1000); // start countdown timer
-  questionSection.setAttribute("style","display:block");s
+  questionSection.setAttribute("style","display:block");
+  questionIndex = 0; // set question index = to 0 to start at first question
+  displayQuestion();
 }
 start.addEventListener("click",hideStartCard); // when user clicks on start btn, hide card and go to next section & start timer
 
-var questions = [
+var questionObject = [
   {
     title: "Here is Question one",
     choices: ["answer1", "answer2", "answer3", "answer4"],
@@ -55,16 +62,52 @@ var questions = [
   },
   {
     title: "Here is Question two",
-    choices: ["answer1", "answer2", "answer3", "answer4"],
+    choices: ["answer1", "ananswer2", "swer3", "answer4"],
     answer: "answer3"
   }
 ];
 
 function displayQuestion() {
-  for (let i = 0; i < questions.length; i++) {
-    questionTitle.innerHTML = questions.title[i];
-    answers.innerText = questions.choices[i];
+  // question[0];
+  // questionObject[currentQuestion]
+  // questionTitle.innerHTML = `<btn class="">${questionObject.title[i]}</btn>`
+  questionTitle.textContent = questionObject[questionIndex].title;
+  console.log(answerOptions)
+  console.log(typeof answerOptions)
+  
+  for (let i = 0; i < answerOptions.length; i++) {
+    //answerChoices.innerHTML = questionObject.choices[i];
+    console.log(answerOptions[i]);
+    console.log(questionObject[questionIndex].choices[i]);
+    answerOptions[i].textContent = questionObject[questionIndex].choices[i];
   };
+
+  // ok now what(?)
+
+  // Capture the User choice --> event bubbling 
+  answers.addEventListener("click", function(event) {
+    event.stopPropagation();
+    console.log(event)
+    console.log(event.target);
+    console.log(event.target.textContent);
+    var userAnswer = event.target.textContent;
+    if (userAnswer === questionObject.answer) {
+      score++
+      let newElement = document.createElement('p')
+      newElement.setAttribute("style","text:green;")
+      newElement.textContent = "Correct";
+      correctDiv.append(newElement);
+    }
+  })
+
+
+  // Check answer 
+    // if correct add to score 
+    // If wrong subtract time
+
+    // show next question
+      // have to clear the previous questions 
+      // 
 };
 nextBtn.addEventListener("click",displayQuestion); // when user clicks on start btn, hide card and go to next section
 
@@ -75,16 +118,12 @@ function userAnswer() {
   // print
   console.log("Incorrect answer time loss", incorrect + "You lost 3 seconds!");
 };
+
 // Then, you can use a for loop to keep track of your "question index" or what question your on.
 // With that, you can use the createElement operator to create an HTML element for the question title, and then buttons for each of the answers
 
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
-
-
-
-
-
 
 
 
