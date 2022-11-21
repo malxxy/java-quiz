@@ -9,7 +9,7 @@ var nextBtn = document.getElementById("next-btn");
 var answers = document.getElementById("answers");
 var answerChoices = document.getElementById("answer-btn");
 var answerOptions = document.querySelectorAll('.answer-btn');
-
+var correctDiv = document.getElementById("correct")
 // Style header h1
 h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px; text-align: center;");
 
@@ -68,9 +68,6 @@ var questionObject = [
 ];
 
 function displayQuestion() {
-  // question[0];
-  // questionObject[currentQuestion]
-  // questionTitle.innerHTML = `<btn class="">${questionObject.title[i]}</btn>`
   questionTitle.textContent = questionObject[questionIndex].title;
   console.log(answerOptions)
   console.log(typeof answerOptions)
@@ -91,15 +88,19 @@ function displayQuestion() {
     console.log(event.target);
     console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
-    if (userAnswer === questionObject.answer) {
+    if (userAnswer === questionObject[0].answer) {
       score++
-      let newElement = document.createElement('p')
-      newElement.setAttribute("style","text:green;")
-      newElement.textContent = "Correct";
-      correctDiv.append(newElement);
+      let userCorrect = document.createElement('p')
+      userCorrect.setAttribute("style","text:green; background-color: --mTeal;")
+      userCorrect.textContent = "Correct";
+      correctDiv.append(userCorrect);
+    } else {
+      let userIncorrect = document.createElement('p')
+      userIncorrect.setAttribute("style","text:red; background-color: --mTeal;")
+      userIncorrect.textContent = "Incorrect";
+      correctDiv.append(userIncorrect);
     }
   })
-
 
   // Check answer 
     // if correct add to score 
