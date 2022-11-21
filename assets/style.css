@@ -51,4 +51,9 @@ btn {
     box-shadow: 3px 3px var(--textColor);
     border: 2px solid var(--textColor);
     border-radius: 5%;
+    justify-content: center;
+}
+
+btn:hover {
+    opacity: 50%;
 }
