@@ -1,6 +1,7 @@
 // Variables
 var h1El = document.getElementById("h1-title");
 var startCard = document.querySelector(".opener");
+var container = document.getElementById("container");
 var start = document.getElementById("start-btn");
 var questionSection = document.getElementById("questions");
 var questionTitle = document.getElementById("question-title");
@@ -16,6 +17,8 @@ h1El.setAttribute("style","background-color: --light; font-family: --headerFont;
 // Style start card
 startCard.setAttribute("style",
     "width: 400px; height: 300px; border: --dBlue; background-color: --lBlue;");
+
+container.setAttribute("style", "display: flex; justify-content:center;");
 
 // Hide question section and game over section
 gameOver.setAttribute("style","display: none;"); // Hide game over card
