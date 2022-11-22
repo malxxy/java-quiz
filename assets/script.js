@@ -23,24 +23,29 @@ container.setAttribute("style", "display: flex; justify-content:center;");
 // Hide question section and game over section
 gameOver.setAttribute("style","display: none;"); // Hide game over card
 
-// Define variable for amount of time user has to finish quiz
-var seconds = 20
+// Define variables
+var seconds = 15
 var questionIndex;
 var userAnswer;
 var score = 0;
+
+document.getElementById("timer").setAttribute("style","display:flex; justify-content:center;") // Center timer
 
 // Timer function
 function beginTimer() {
   seconds = seconds-1;
   console.log(seconds);
   if (seconds > 0) {
-    document.getElementById.innerHTMl = seconds;
+    document.getElementById("timer").textContent = seconds;
   }
   // code to print time document.getElementById("timer").innerHTML = seconds.toLocaleTimeString();
   else if (seconds === 0) {
-    document.getElementById("timer").innerHTMl = "You're out of time!"
+    document.getElementById("timer").textContent = "You're out of time!"
+    questionSection.setAttribute("style","display: none;"); // Hide questions
+    gameOver.setAttribute("style","display:block;")
   };
 };
+
 
 // Start game function
 function hideStartCard() {
@@ -92,7 +97,7 @@ function displayQuestion() {
     console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
     if (userAnswer === questionObject[0].answer) {
-      score++
+      score = score + score++;
       let userCorrect = document.createElement('p')
       userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
       userCorrect.textContent = "Correct";
