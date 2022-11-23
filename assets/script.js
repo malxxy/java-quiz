@@ -26,7 +26,7 @@ container.setAttribute("style", "display: flex; justify-content:center;");
 gameOver.setAttribute("style","display: none;"); // Hide game over card
 
 // Define variables
-var seconds = 15;
+var seconds = 30;
 var questionIndex;
 var userAnswer;
 var score = 0;
@@ -128,6 +128,7 @@ function displayNextQuestion() {
 };
 
 function inputAnswer(event) {
+  clearDiv();
   let userCorrect = undefined;
   let userIncorrect = undefined;
   event.stopPropagation();
@@ -168,6 +169,7 @@ function displayLastQuestion() {
 };
 
 function inputLastAnswer(event) {
+  clearDiv();
   let userCorrect = undefined;
   let userIncorrect = undefined;
   event.stopPropagation();
