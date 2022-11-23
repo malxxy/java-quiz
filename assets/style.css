@@ -12,7 +12,6 @@
     --dGreen: #45A545;
     --textColor: #0A152E;
     --headerFont: "Georgia","Times New Roman",serif;
-
 }
 
 /* Universal selctors */
@@ -86,4 +85,14 @@ btn:hover {
 
 #questions {
     display: none;
+}
+
+#save-score {
+    padding:10px;
+    background: var(--lGreen);
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 3px;
 }

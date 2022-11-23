@@ -91,6 +91,7 @@ function displayQuestion() {
 
   // Capture the User choice --> event bubbling 
   answers.addEventListener("click", function(event) {
+    clearDiv();
     event.stopPropagation();
     console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
@@ -128,6 +129,7 @@ function displayNextQuestion() {
 };
 
 function inputAnswer(event) {
+  //clear div
   clearDiv();
   let userCorrect = undefined;
   let userIncorrect = undefined;
