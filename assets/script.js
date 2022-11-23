@@ -111,6 +111,7 @@ function displayQuestion() {
   });
 
 function displayNextQuestion() {
+    clearDiv();
     // Set index to 1
     questionIndex = [1];
     questionTitle.textContent = questionObject[questionIndex].title;
@@ -150,6 +151,8 @@ function inputAnswer(event) {
 };
 
 function displayLastQuestion() {
+  // clear div
+  clearDiv();
   // Set index to 2
   questionIndex = [2];
   questionTitle.textContent = questionObject[questionIndex].title;
@@ -195,5 +198,8 @@ function displayGameOver () {
   finalScore.append(showScore);
 };
 
+function clearDiv () {
+  correctDiv.innerHTML = "";
+}
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
