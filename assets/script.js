@@ -12,6 +12,7 @@ var answerOptions = document.querySelectorAll('.answer-btn');
 var correctDiv = document.getElementById("correct");
 var finalScore = document.getElementById("final-score");
 var initials = document.getElementById("initials");
+var saveBtn = document.getElementById("save-score")
 
 // Style header h1
 h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px; text-align: center;");
@@ -26,7 +27,7 @@ container.setAttribute("style", "display: flex; justify-content:center;");
 gameOver.setAttribute("style","display: none;"); // Hide game over card
 
 // Define variables
-var seconds = 30;
+var seconds = 20;
 var questionIndex;
 var userAnswer;
 var score = 0;
@@ -96,7 +97,7 @@ function displayQuestion() {
     console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
     if (userAnswer === questionObject[0].answer) {
-      score = score + score++;
+      score++;
       let userCorrect = document.createElement('p')
       userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
       userCorrect.textContent = "Correct";
@@ -179,7 +180,7 @@ function inputLastAnswer(event) {
   console.log("THIRD QUESTION",event.target.textContent);
   var userAnswer = event.target.textContent;
   if (userAnswer === questionObject[questionIndex].answer) {
-       score = score + score++;
+       score++;
        userCorrect = document.createElement('p')
        userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
        userCorrect.textContent = "Correct";
@@ -207,3 +208,18 @@ function clearDiv () {
 }
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
+
+// STORE SCORE AS ARRAY!
+function save() {
+  var initials = window.prompt("Please enter your initials");
+  // var scores = localStorage.getItem("Score");
+  // var pastScores = localStorage.setItem("Score", scores);
+  // console.log("pastScores",pastScores)
+  // scoreObject = {
+  //   userInitials: initials,
+  //   Score: pastScores,
+  // };
+  // console.log(scoreObject);
+  return;
+};
+saveBtn.addEventListener("click",save);
