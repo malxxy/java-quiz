@@ -31,6 +31,8 @@ var seconds = 20;
 var questionIndex;
 var userAnswer;
 var score = 0;
+var scoreArray = [];
+var timer;
 
 // Question object
 var questionObject = [
@@ -71,7 +73,7 @@ function beginTimer() {
 // Start game function
 function hideStartCard() {
   startCard.setAttribute("style","display: none;"); // Hide start card
-  setInterval(beginTimer,1000); // start countdown timer
+  timer = setInterval(beginTimer,1000); // start countdown timer
   questionSection.setAttribute("style","display:block");
   questionIndex = 0; // set question index = to 0 to start at first question
   displayQuestion();
@@ -198,6 +200,9 @@ function inputLastAnswer(event) {
 function displayGameOver () {
   questionSection.setAttribute("style","display: none;"); // Hide questions
   gameOver.setAttribute("style","display:block;"); // Show game over
+  // STOP TIMER & set timer to 0
+  clearInterval(timer);
+  document.getElementById("timer").textContent = "0:00";
   let showScore = document.createElement('h3');
   showScore.textContent = "Your final score is: " + score + "/3.";
   finalScore.append(showScore);
@@ -220,6 +225,7 @@ function save() {
   //   Score: pastScores,
   // };
   // console.log(scoreObject);
+  alert("Your score is " + score + ".");
   return;
 };
 saveBtn.addEventListener("click",save);
