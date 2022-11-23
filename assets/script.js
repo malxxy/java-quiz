@@ -31,25 +31,25 @@ var seconds = 20;
 var questionIndex;
 var userAnswer;
 var score = 0;
-var scoreArray = [];
+var pullScore = [];
 var timer;
 
 // Question object
 var questionObject = [
   {
-    title: "Here is Question one",
-    choices: ["answer1", "answer2", "answer3", "answer4"],
-    answer: "answer1"
+    title: "What does API stand for?",
+    choices: ["Application Programming Interface", "Application Program Interaction", "Automatic Programming Interface", "Automatic Program Integration"],
+    answer: "Application Programming Interface"
   },
   {
-    title: "Here is Question two",
-    choices: ["1", "2", "3", "4"],
-    answer: "3"
+    title: "What command targets an ID named 'specific' Element from the HTML file?",
+    choices: ["document.querySelector('.specific')", "document.querySelectorAll('specific')", "document.getElementbyID('specific')", "document.getElementbyID('#specific')"],
+    answer: "document.getElementbyID('specific')"
   },
   {
-    title: "Here is Question three",
-    choices: ["input", "input2", "swer3", "fake"],
-    answer: "swer3"
+    title: "What fuction repeatedly executes code every X millisecond?",
+    choices: ["getInterval(func,X);", "beginTimer(func,X);", "setTimeout(func,X);", "setInterval(func,X);"],
+    answer: "setInterval(func,X);"
   }
 ];
 
@@ -217,7 +217,7 @@ questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal
 // STORE SCORE AS ARRAY!
 function save() {
   var initials = window.prompt("Please enter your initials");
-  var pullScore = localStorage.getItem("SCORES") || [];
+  pullScore = localStorage.getItem("SCORES") || [];
   console.log("Pullscore",pullScore);
   // scoreArray.push(pullScore);
   scoreObject = {
