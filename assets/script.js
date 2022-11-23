@@ -217,13 +217,17 @@ questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal
 // STORE SCORE AS ARRAY!
 function save() {
   var initials = window.prompt("Please enter your initials");
-  localStorage.setItem("SCORES",score);
-  var pullScore = localStorage.getItem("SCORES");
+  var pullScore = localStorage.getItem("SCORES") || [];
+  console.log("Pullscore",pullScore);
+  // scoreArray.push(pullScore);
   scoreObject = {
      userInitials: initials,
-     Scores: pullScore,
+     Scores: score,
   };
+  pullScore.push(scoreObject); // json stringify (when you set item) and parse (when you get item)
   console.log(scoreObject);
+  localStorage.setItem("SCORES",pullScore);
+ 
   alert(initials + " score is " + score + ".");
   return;
 };
