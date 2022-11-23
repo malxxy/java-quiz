@@ -8,9 +8,11 @@ var questionTitle = document.getElementById("question-title");
 var gameOver = document.getElementById("game-over");
 var nextBtn = document.getElementById("next-btn");
 var answers = document.getElementById("answers");
-var answerChoices = document.getElementById("answer-btn");
 var answerOptions = document.querySelectorAll('.answer-btn');
-var correctDiv = document.getElementById("correct")
+var correctDiv = document.getElementById("correct");
+var finalScore = document.getElementById("final-score");
+var initials = document.getElementById("initials");
+
 // Style header h1
 h1El.setAttribute("style","background-color: --light; font-family: --headerFont; font-size: 36px; padding: 12px; text-align: center;");
 
@@ -24,10 +26,29 @@ container.setAttribute("style", "display: flex; justify-content:center;");
 gameOver.setAttribute("style","display: none;"); // Hide game over card
 
 // Define variables
-var seconds = 15
+var seconds = 15;
 var questionIndex;
 var userAnswer;
 var score = 0;
+
+// Question object
+var questionObject = [
+  {
+    title: "Here is Question one",
+    choices: ["answer1", "answer2", "answer3", "answer4"],
+    answer: "answer1"
+  },
+  {
+    title: "Here is Question two",
+    choices: ["1", "2", "3", "4"],
+    answer: "3"
+  },
+  {
+    title: "Here is Question three",
+    choices: ["input", "input2", "swer3", "fake"],
+    answer: "swer3"
+  }
+];
 
 document.getElementById("timer").setAttribute("style","display:flex; justify-content:center;") // Center timer
 
@@ -46,7 +67,6 @@ function beginTimer() {
   };
 };
 
-
 // Start game function
 function hideStartCard() {
   startCard.setAttribute("style","display: none;"); // Hide start card
@@ -57,28 +77,10 @@ function hideStartCard() {
 }
 start.addEventListener("click",hideStartCard); // when user clicks on start btn, hide card and go to next section & start timer
 
-var questionObject = [
-  {
-    title: "Here is Question one",
-    choices: ["answer1", "answer2", "answer3", "answer4"],
-    answer: "answer1"
-  },
-  {
-    title: "Here is Question two",
-    choices: ["answer1", "answer2", "answer3", "answer4"],
-    answer: "answer3"
-  },
-  {
-    title: "Here is Question two",
-    choices: ["answer1", "ananswer2", "swer3", "answer4"],
-    answer: "answer3"
-  }
-];
-
+// Display first question function
 function displayQuestion() {
   questionTitle.textContent = questionObject[questionIndex].title;
-  console.log(answerOptions)
-  console.log(typeof answerOptions)
+  console.log(answerOptions);
   
   for (let i = 0; i < answerOptions.length; i++) {
     //answerChoices.innerHTML = questionObject.choices[i];
@@ -87,13 +89,9 @@ function displayQuestion() {
     answerOptions[i].textContent = questionObject[questionIndex].choices[i];
   };
 
-  // ok now what(?)
-
   // Capture the User choice --> event bubbling 
   answers.addEventListener("click", function(event) {
     event.stopPropagation();
-    console.log(event)
-    console.log(event.target);
     console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
     if (userAnswer === questionObject[0].answer) {
@@ -105,20 +103,97 @@ function displayQuestion() {
     } else {
       let userIncorrect = document.createElement('p')
       userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
-      userIncorrect.textContent = "Incorrect - You lost 3 seconds!";
+      userIncorrect.textContent = "Incorrect - You lost 1 second!";
       correctDiv.append(userIncorrect);
-      count = count -3
+      seconds = seconds - 1;
     }
-  })
+    nextBtn.addEventListener("click",displayNextQuestion);
+  });
 
-    // show next question
-      // have to clear the previous questions 
-      // 
+function displayNextQuestion() {
+    // Set index to 1
+    questionIndex = [1];
+    questionTitle.textContent = questionObject[questionIndex].title;
+    console.log(answerOptions)
+    for (let i = 0; i < answerOptions.length; i++) {
+      console.log(answerOptions[i]);
+      console.log(questionObject[questionIndex].choices[i]);
+      answerOptions[i].textContent = questionObject[questionIndex].choices[i];
+    };
+
+    answers.addEventListener("click",inputAnswer);
+    nextBtn.addEventListener("click",displayLastQuestion);
+  };
 };
-nextBtn.addEventListener("click",displayQuestion); // when user clicks on start btn, hide card and go to next section
 
-// Then, you can use a for loop to keep track of your "question index" or what question your on.
-// With that, you can use the createElement operator to create an HTML element for the question title, and then buttons for each of the answers
+function inputAnswer(event) {
+  let userCorrect = undefined;
+  let userIncorrect = undefined;
+  event.stopPropagation();
+  questionIndex = [1];
+  console.log("SECOND QUESTION",event.target.textContent);
+  var userAnswer = event.target.textContent;
+  if (userAnswer === questionObject[questionIndex].answer) {
+       score = score + score++;
+       userCorrect = document.createElement('p')
+       userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
+       userCorrect.textContent = "Correct";
+       correctDiv.append(userCorrect);
+     } else {
+       console.log("user incorrect",userIncorrect)
+       userIncorrect = document.createElement('p')
+       userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
+       userIncorrect.textContent = "Incorrect - You lost 1 second!";
+       correctDiv.append(userIncorrect);
+       seconds = seconds - 1;
+     };
+};
+
+function displayLastQuestion() {
+  // Set index to 2
+  questionIndex = [2];
+  questionTitle.textContent = questionObject[questionIndex].title;
+  console.log(answerOptions)
+  for (let i = 0; i < answerOptions.length; i++) {
+    console.log(answerOptions[i]);
+    console.log(questionObject[questionIndex].choices[i]);
+    answerOptions[i].textContent = questionObject[questionIndex].choices[i];
+  };
+
+  answers.addEventListener("click",inputLastAnswer);
+  nextBtn.addEventListener("click",displayGameOver);
+};
+
+function inputLastAnswer(event) {
+  let userCorrect = undefined;
+  let userIncorrect = undefined;
+  event.stopPropagation();
+  questionIndex = [2];
+  console.log("THIRD QUESTION",event.target.textContent);
+  var userAnswer = event.target.textContent;
+  if (userAnswer === questionObject[questionIndex].answer) {
+       score = score + score++;
+       userCorrect = document.createElement('p')
+       userCorrect.setAttribute("style","color:green; background-color: --mTeal;")
+       userCorrect.textContent = "Correct";
+       correctDiv.append(userCorrect);
+     } else {
+       console.log("user incorrect",userIncorrect)
+       userIncorrect = document.createElement('p')
+       userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
+       userIncorrect.textContent = "Incorrect - You lost 1 second!";
+       correctDiv.append(userIncorrect);
+       seconds = seconds - 1;
+     };
+};
+
+function displayGameOver () {
+  questionSection.setAttribute("style","display: none;"); // Hide questions
+  gameOver.setAttribute("style","display:block;"); // Show game over
+  let showScore = document.createElement('h3');
+  showScore.textContent = "Your final score is: " + score + "/3.";
+  finalScore.append(showScore);
+};
 
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
