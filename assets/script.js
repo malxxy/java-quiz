@@ -217,15 +217,14 @@ questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal
 // STORE SCORE AS ARRAY!
 function save() {
   var initials = window.prompt("Please enter your initials");
-  // var scores = localStorage.getItem("Score");
-  // var pastScores = localStorage.setItem("Score", scores);
-  // console.log("pastScores",pastScores)
-  // scoreObject = {
-  //   userInitials: initials,
-  //   Score: pastScores,
-  // };
-  // console.log(scoreObject);
-  alert("Your score is " + score + ".");
+  localStorage.setItem("SCORES",score);
+  var pullScore = localStorage.getItem("SCORES");
+  scoreObject = {
+     userInitials: initials,
+     Scores: pullScore,
+  };
+  console.log(scoreObject);
+  alert(initials + " score is " + score + ".");
   return;
 };
 saveBtn.addEventListener("click",save);
