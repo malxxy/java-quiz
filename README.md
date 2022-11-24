@@ -13,24 +13,32 @@ N/A
 
 This page is live at GitHub pages launched by user malxxy.
 <br>
-Link to live webpage: 
+Link to live webpage: https://malxxy.github.io/java-quiz/ 
 <br>
-Link to GitHub repository:
+Link to GitHub repository: https://github.com/malxxy/java-quiz.git 
 <br>
 Link to GitHub profile: https://github.com/malxxy 
 <br>
 
-Header:
-![header](./assets/images/main-page.png)
-
-Webpage content:
-![content](./assets/images/content-page.png)
-
-Webpage with alt text shown:
-![alttext1](./assets/images/alt-text-benefits.png)
-
-![alttext2](./assets/images/alt-text-main.png)
-
+Start page:
+![start quiz](./assets/start.png)
+<br>
+Question 1:
+![quiz question 1](./assets/q1.png)
+<br>
+Question 2:
+![quiz question 2](./assets/q2)
+<br>
+Question 3:
+![quiz question 3](./assets/q3)
+<br>
+Game Over:
+![Game over save score](./assets/gameOver.png)
+<br>
+Window Prompt:
+![input initials](./assets/prompt.png)
+![alert](./assets/alert.png)
+<br>
 ## Credits
 
 No collaborators.
