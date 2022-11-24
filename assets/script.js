@@ -24,14 +24,13 @@ startCard.setAttribute("style",
 container.setAttribute("style", "display: flex; justify-content:center;");
 
 // Hide question section and game over section
-gameOver.setAttribute("style","display: none;"); // Hide game over card
+gameOver.setAttribute("style","display: none;");
 
 // Define variables
 var seconds = 20;
 var questionIndex;
 var userAnswer;
 var score = 0;
-var pullScore = [];
 var timer;
 
 // Question object
@@ -58,11 +57,10 @@ document.getElementById("timer").setAttribute("style","display:flex; justify-con
 // Timer function
 function beginTimer() {
   seconds = seconds-1;
-  console.log(seconds);
   if (seconds > 0) {
     document.getElementById("timer").textContent = seconds;
   }
-  // code to print time document.getElementById("timer").innerHTML = seconds.toLocaleTimeString();
+  // code to print time
   else if (seconds === 0) {
     document.getElementById("timer").textContent = "You're out of time!"
     questionSection.setAttribute("style","display: none;"); // Hide questions
@@ -75,28 +73,23 @@ function hideStartCard() {
   startCard.setAttribute("style","display: none;"); // Hide start card
   timer = setInterval(beginTimer,1000); // start countdown timer
   questionSection.setAttribute("style","display:block");
-  questionIndex = 0; // set question index = to 0 to start at first question
   displayQuestion();
 }
 start.addEventListener("click",hideStartCard); // when user clicks on start btn, hide card and go to next section & start timer
 
 // Display first question function
 function displayQuestion() {
-  questionTitle.textContent = questionObject[questionIndex].title;
-  console.log(answerOptions);
-  
+  questionIndex = 0; // set question index = to 0 to start at first question
+  questionTitle.textContent = questionObject[questionIndex].title; // add question 1 text to question sections
+  // Loop through answer options to display answer text content
   for (let i = 0; i < answerOptions.length; i++) {
-    //answerChoices.innerHTML = questionObject.choices[i];
-    console.log(answerOptions[i]);
-    console.log(questionObject[questionIndex].choices[i]);
     answerOptions[i].textContent = questionObject[questionIndex].choices[i];
   };
 
-  // Capture the User choice --> event bubbling 
+  // Capture the user choice --> event bubbling 
   answers.addEventListener("click", function(event) {
     clearDiv();
     event.stopPropagation();
-    console.log(event.target.textContent);
     var userAnswer = event.target.textContent;
     if (userAnswer === questionObject[0].answer) {
       score++;
@@ -119,10 +112,7 @@ function displayNextQuestion() {
     // Set index to 1
     questionIndex = [1];
     questionTitle.textContent = questionObject[questionIndex].title;
-    console.log(answerOptions)
     for (let i = 0; i < answerOptions.length; i++) {
-      console.log(answerOptions[i]);
-      console.log(questionObject[questionIndex].choices[i]);
       answerOptions[i].textContent = questionObject[questionIndex].choices[i];
     };
 
@@ -138,7 +128,6 @@ function inputAnswer(event) {
   let userIncorrect = undefined;
   event.stopPropagation();
   questionIndex = [1];
-  console.log("SECOND QUESTION",event.target.textContent);
   var userAnswer = event.target.textContent;
   if (userAnswer === questionObject[questionIndex].answer) {
        score = score + score++;
@@ -147,7 +136,6 @@ function inputAnswer(event) {
        userCorrect.textContent = "Correct";
        correctDiv.append(userCorrect);
      } else {
-       console.log("user incorrect",userIncorrect)
        userIncorrect = document.createElement('p')
        userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
        userIncorrect.textContent = "Incorrect - You lost 1 second!";
@@ -156,16 +144,14 @@ function inputAnswer(event) {
      };
 };
 
+// FUnction to display last question
 function displayLastQuestion() {
   // clear div
   clearDiv();
   // Set index to 2
   questionIndex = [2];
   questionTitle.textContent = questionObject[questionIndex].title;
-  console.log(answerOptions)
   for (let i = 0; i < answerOptions.length; i++) {
-    console.log(answerOptions[i]);
-    console.log(questionObject[questionIndex].choices[i]);
     answerOptions[i].textContent = questionObject[questionIndex].choices[i];
   };
 
@@ -179,7 +165,6 @@ function inputLastAnswer(event) {
   let userIncorrect = undefined;
   event.stopPropagation();
   questionIndex = [2];
-  console.log("THIRD QUESTION",event.target.textContent);
   var userAnswer = event.target.textContent;
   if (userAnswer === questionObject[questionIndex].answer) {
        score++;
@@ -188,7 +173,6 @@ function inputLastAnswer(event) {
        userCorrect.textContent = "Correct";
        correctDiv.append(userCorrect);
      } else {
-       console.log("user incorrect",userIncorrect)
        userIncorrect = document.createElement('p')
        userIncorrect.setAttribute("style","color:red; background-color: --mTeal;")
        userIncorrect.textContent = "Incorrect - You lost 1 second!";
@@ -216,19 +200,22 @@ questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal
 
 // STORE SCORE AS ARRAY!
 function save() {
+  // Prompt user to input initials
   var initials = window.prompt("Please enter your initials");
-  pullScore = localStorage.getItem("SCORES") || [];
-  console.log("Pullscore",pullScore);
-  // scoreArray.push(pullScore);
-  scoreObject = {
-     userInitials: initials,
-     Scores: score,
+  // Create object to hold initials and score
+  let myScore = {
+      userInitials: initials,
+      userScores: score,
   };
-  pullScore.push(scoreObject); // json stringify (when you set item) and parse (when you get item)
-  console.log(scoreObject);
-  localStorage.setItem("SCORES",pullScore);
- 
-  alert(initials + " score is " + score + ".");
+  // set item and json stringify to hold in local storage
+  localStorage.setItem("myScore",JSON.stringify(myScore)) || [];
+  console.log("myScore",myScore);
+  
+  let pullScore = JSON.parse(localStorage.getItem("myScore"));
+  console.log(pullScore);
+  // get item and parse to retrieve storage
+  
+  alert(initials + " score is " + score + ". Check the console to view your previous scores.");
   return;
 };
 saveBtn.addEventListener("click",save);
