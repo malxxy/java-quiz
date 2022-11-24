@@ -184,8 +184,7 @@ function inputLastAnswer(event) {
 function displayGameOver () {
   questionSection.setAttribute("style","display: none;"); // Hide questions
   gameOver.setAttribute("style","display:block;"); // Show game over
-  // STOP TIMER & set timer to 0
-  clearInterval(timer);
+  clearInterval(timer); // STOP TIMER & set timer to 0
   document.getElementById("timer").textContent = "0:00";
   let showScore = document.createElement('h3');
   showScore.textContent = "Your final score is: " + score + "/3.";
@@ -198,7 +197,7 @@ function clearDiv () {
 // Style paragraph answer backgrounds
 questionSection.setAttribute("style","background: linear-gradient(90deg, --mTeal 0%, --mGreen 0%, --dTeal 100%); text:white; padding: 5px;");
 
-// STORE SCORE AS ARRAY!
+// STORE SCORE!
 function save() {
   // Prompt user to input initials
   var initials = window.prompt("Please enter your initials");
@@ -215,7 +214,7 @@ function save() {
   console.log(pullScore);
   // get item and parse to retrieve storage
   
-  alert(initials + " score is " + score + ". Check the console to view your previous scores.");
+  alert(initials + " score is " + score + ". Check the console to view saved score.");
   return;
 };
 saveBtn.addEventListener("click",save);
