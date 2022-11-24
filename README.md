@@ -27,10 +27,10 @@ Question 1:
 ![quiz question 1](./assets/q1.png)
 <br>
 Question 2:
-![quiz question 2](./assets/q2)
+![quiz question 2](./assets/q2.png)
 <br>
 Question 3:
-![quiz question 3](./assets/q3)
+![quiz question 3](./assets/q3.png)
 <br>
 Game Over:
 ![Game over save score](./assets/gameOver.png)
